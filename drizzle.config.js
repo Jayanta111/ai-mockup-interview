@@ -1,9 +1,13 @@
 import { defineConfig } from "drizzle-kit";
+import dotenv from "dotenv";
+
+// Load .env file
+dotenv.config();
 
 export default defineConfig({
   dialect: "postgresql",
-  schema: "./utils/schema.js",
+  schema: "./utils/schema.js", // or .ts if using TypeScript
   dbCredentials: {
-    url: 'postgresql://neondb_owner:npg_aHSdB4uN7vZA@ep-dry-scene-a52swnjl-pooler.us-east-2.aws.neon.tech/ai-mock-interviewer?sslmode=require',
+    url: process.env.NEXT_PUBLIC_DRIZZLE_DB_URL || "",
   },
 });
